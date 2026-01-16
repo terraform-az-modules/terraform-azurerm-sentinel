@@ -28,7 +28,7 @@ module "log-analytics" {
 }
 
 module "sentinel" {
-  depends_on = [module.log-analytics]
+  depends_on                 = [module.log-analytics]
   source                     = "../../"
   name                       = "core"
   environment                = "dev"

@@ -88,9 +88,11 @@ resource "azurerm_sentinel_data_connector_microsoft_defender_advanced_threat_pro
   tenant_id                  = var.tenant_id
 }
 
+##-----------------------------------------------------------------------------
+# Sentinel Log Anaytics Workspace
+##-----------------------------------------------------------------------------
 resource "azurerm_sentinel_log_analytics_workspace_onboarding" "main" {
-  workspace_id                 = var.log_analytics_workspace_id
-  customer_managed_key_enabled = false
+  workspace_id = var.log_analytics_workspace_id
 }
 
 ##-----------------------------------------------------------------------------
