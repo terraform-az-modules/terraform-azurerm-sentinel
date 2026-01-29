@@ -27,7 +27,7 @@ This directory contains an example usage of the **terraform-azurerm-sentinel** m
 | Name            | Source                                      | Version |
 |-----------------|---------------------------------------------|---------|
 | resource_group  | terraform-az-modules/resource-group/azurerm | 1.0.3   |
-| log-analytics   | terraform-az-modules/log-analytics/azure    | 1.0.1   |
+| log-analytics   | terraform-az-modules/log-analytics/azure    | 1.0.2   |
 | sentinel        | ../../                                      | n/a     |
 
 ---

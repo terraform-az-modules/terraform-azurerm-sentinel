@@ -315,20 +315,20 @@ variable "ti_taxii_lookback_date" {
 ##-----------------------------------------------------------------------------
 variable "enable_fusion_rule" {
   type        = bool
-  description = "Enable Fusion alert rule."
   default     = false
+  description = "Enable Fusion alert rule."
 }
 
 variable "fusion_alert_rule_template_guid" {
   type        = string
-  description = "Fusion alert rule template GUID."
   default     = "f71aba3d-28fb-450b-b192-4e76a83015c8"
+  description = "Fusion alert rule template GUID."
 }
 
 variable "fusion_enabled" {
   type        = bool
-  description = "Enable fusion rule execution."
   default     = false
+  description = "Enable fusion rule execution."
 }
 
 variable "fusion_sources" {
@@ -341,8 +341,8 @@ variable "fusion_sources" {
       severities_allowed = list(string)
     }))
   }))
-  description = "Fusion rule sources configuration."
   default     = []
+  description = "Fusion rule sources configuration."
 }
 
 ##-----------------------------------------------------------------------------
@@ -350,20 +350,20 @@ variable "fusion_sources" {
 ##-----------------------------------------------------------------------------
 variable "enable_ml_behavior_analytics_rule" {
   type        = bool
-  description = "Enable ML Behavior Analytics rule."
   default     = false
+  description = "Enable ML Behavior Analytics rule."
 }
 
 variable "ml_behavior_analytics_template_guid" {
   type        = string
-  description = "ML Behavior Analytics template GUID."
   default     = "737a2ce1-70a3-4968-9e90-3e6aca836abf"
+  description = "ML Behavior Analytics template GUID."
 }
 
 variable "ml_behavior_analytics_enabled" {
   type        = bool
-  description = "Enable ML Behavior Analytics execution."
   default     = false
+  description = "Enable ML Behavior Analytics execution."
 }
 
 ##-----------------------------------------------------------------------------
@@ -371,56 +371,56 @@ variable "ml_behavior_analytics_enabled" {
 ##-----------------------------------------------------------------------------
 variable "enable_ms_security_incident_rule" {
   type        = bool
-  description = "Enable MS Security Incident rule."
   default     = false
+  description = "Enable MS Security Incident rule."
 }
 
 variable "ms_security_display_name" {
   type        = string
-  description = "Display name for MS Security Incident rule."
   default     = "MS Security Incident Alert Rule"
+  description = "Display name for MS Security Incident rule."
 }
 
 variable "ms_security_product_filter" {
   type        = string
-  description = "Product filter for MS Security Incident."
   default     = "Microsoft Cloud App Security"
+  description = "Product filter for MS Security Incident."
 }
 
 variable "ms_security_severity_filter" {
   type        = list(string)
-  description = "Severity filter for MS Security Incident."
   default     = ["High", "Medium"]
+  description = "Severity filter for MS Security Incident."
 }
 
 variable "ms_security_template_guid" {
   type        = string
-  description = "MS Security template GUID."
   default     = null
+  description = "MS Security template GUID."
 }
 
 variable "ms_security_description" {
   type        = string
-  description = "Description for MS Security Incident rule."
   default     = null
+  description = "Description for MS Security Incident rule."
 }
 
 variable "ms_security_enabled" {
   type        = bool
-  description = "Enable MS Security Incident execution."
   default     = false
+  description = "Enable MS Security Incident execution."
 }
 
 variable "ms_security_display_name_filter" {
   type        = list(string)
-  description = "Display name filter."
   default     = []
+  description = "Display name filter."
 }
 
 variable "ms_security_display_name_exclude_filter" {
   type        = list(string)
-  description = "Display name exclude filter."
   default     = []
+  description = "Display name exclude filter."
 }
 
 ##-----------------------------------------------------------------------------
@@ -428,88 +428,88 @@ variable "ms_security_display_name_exclude_filter" {
 ##-----------------------------------------------------------------------------
 variable "enable_nrt_rule" {
   type        = bool
-  description = "Enable NRT alert rule."
   default     = false
+  description = "Enable NRT alert rule."
 }
 
 variable "nrt_display_name" {
   type        = string
-  description = "Display name for NRT rule."
   default     = "NRT Alert Rule"
+  description = "Display name for NRT rule."
 }
 
 variable "nrt_severity" {
   type        = string
-  description = "Severity for NRT rule."
   default     = "High"
+  description = "Severity for NRT rule."
 }
 
 variable "nrt_query" {
   type        = string
-  description = "KQL query for NRT rule."
   default     = ""
+  description = "KQL query for NRT rule."
 }
 
 variable "nrt_template_guid" {
   type        = string
-  description = "NRT template GUID."
   default     = null
+  description = "NRT template GUID."
 }
 
 variable "nrt_template_version" {
   type        = string
-  description = "NRT template version."
   default     = null
+  description = "NRT template version."
 }
 
 variable "nrt_description" {
   type        = string
-  description = "Description for NRT rule."
   default     = null
+  description = "Description for NRT rule."
 }
 
 variable "nrt_enabled" {
   type        = bool
-  description = "Enable NRT rule execution."
   default     = false
+  description = "Enable NRT rule execution."
 }
 
 variable "nrt_custom_details" {
   type        = map(string)
-  description = "Custom details for NRT rule."
   default     = {}
+  description = "Custom details for NRT rule."
 }
 
 variable "nrt_suppression_enabled" {
   type        = bool
-  description = "Enable suppression for NRT rule."
   default     = false
+  description = "Enable suppression for NRT rule."
 }
 
 variable "nrt_suppression_duration" {
   type        = string
-  description = "Suppression duration."
   default     = "PT5H"
+  description = "Suppression duration."
 }
 
 variable "nrt_tactics" {
   type        = list(string)
-  description = "MITRE ATT&CK tactics."
   default     = []
+  description = "MITRE ATT&CK tactics."
 }
 
 variable "nrt_techniques" {
   type        = list(string)
-  description = "MITRE ATT&CK techniques."
   default     = []
+  description = "MITRE ATT&CK techniques."
 }
 
 variable "nrt_event_grouping" {
   type = object({
     aggregation_method = string
   })
-  description = "Event grouping configuration."
   default     = null
+  description = "Event grouping configuration."
 }
 
 variable "nrt_alert_details_override" {
@@ -523,8 +523,8 @@ variable "nrt_alert_details_override" {
       value = string
     }))
   })
-  description = "Alert details override configuration."
   default     = null
+  description = "Alert details override configuration."
 }
 
 variable "nrt_entity_mappings" {
@@ -535,48 +535,47 @@ variable "nrt_entity_mappings" {
       column_name = string
     }))
   }))
-  description = "Entity mappings configuration."
   default     = []
+  description = "Entity mappings configuration."
 }
 
 variable "nrt_sentinel_entity_mappings" {
   type = list(object({
     column_name = string
   }))
-  description = "Sentinel entity mappings."
   default     = []
+  description = "Sentinel entity mappings."
 }
 
 variable "nrt_incident_configuration" {
   type        = any
-  description = "Incident configuration."
   default     = null
+  description = "Incident configuration."
 }
 
 ##-----------------------------------------------------------------------------
-# Scheduled Alert Rule Variables (NON-NONSENSE DEFAULTS ON)
+# Scheduled Alert Rule Variables (DEFAULTS ON)
 ##-----------------------------------------------------------------------------
 variable "enable_scheduled_rule" {
   type        = bool
-  description = "Enable Scheduled alert rule."
   default     = true
+  description = "Enable Scheduled alert rule."
 }
 
 variable "scheduled_display_name" {
   type        = string
-  description = "Display name for Scheduled rule."
   default     = "Azure Activity - Privileged Ops / Security Sensitive Changes"
+  description = "Display name for Scheduled rule."
 }
 
 variable "scheduled_severity" {
   type        = string
-  description = "Severity for Scheduled rule."
   default     = "Medium"
+  description = "Severity for Scheduled rule."
 }
 
 variable "scheduled_query" {
   type        = string
-  description = "KQL query for Scheduled rule."
   default     = <<-KQL
     AzureActivity
     | where OperationNameValue has_any (
@@ -596,120 +595,138 @@ variable "scheduled_query" {
         ActivityStatusValue,
         SubscriptionId
   KQL
+  description = "KQL query for Scheduled rule."
 }
 
 variable "scheduled_template_guid" {
   type        = string
-  description = "Scheduled template GUID."
   default     = null
+  description = "Scheduled template GUID."
 }
 
 variable "scheduled_template_version" {
   type        = string
-  description = "Scheduled template version."
   default     = null
+  description = "Scheduled template version."
 }
 
 variable "scheduled_description" {
   type        = string
+  default     = "Detects privileged/critical Azure control-plane changes from AzureActivity."
   description = "Description for Scheduled rule."
-  default     = "Detects privileged/critical Azure control-plane changes from AzureActivity (RBAC, policy, RG delete, NSG rules, Public IP)."
 }
 
 variable "scheduled_enabled" {
   type        = bool
-  description = "Enable Scheduled rule execution."
   default     = true
+  description = "Enable Scheduled rule execution."
 }
 
 variable "scheduled_query_frequency" {
   type        = string
-  description = "Query frequency."
   default     = "PT5M"
+  description = "Query frequency."
 }
 
 variable "scheduled_query_period" {
   type        = string
-  description = "Query period."
   default     = "PT1H"
+  description = "Query period."
 }
 
 variable "scheduled_trigger_operator" {
   type        = string
-  description = "Trigger operator."
   default     = "GreaterThan"
+  description = "Trigger operator."
 }
 
 variable "scheduled_trigger_threshold" {
   type        = number
-  description = "Trigger threshold."
   default     = 0
+  description = "Trigger threshold."
 }
 
 variable "scheduled_suppression_enabled" {
   type        = bool
-  description = "Enable suppression."
   default     = false
+  description = "Enable suppression."
 }
 
 variable "scheduled_suppression_duration" {
   type        = string
-  description = "Suppression duration."
   default     = "PT1H"
+  description = "Suppression duration."
 }
 
 variable "scheduled_custom_details" {
-  type        = map(string)
-  description = "Custom details."
+  type = map(string)
   default = {
     operation = "OperationNameValue"
     caller    = "Caller"
     rg        = "ResourceGroup"
   }
+  description = "Custom details."
 }
 
 variable "scheduled_tactics" {
   type        = list(string)
-  description = "MITRE ATT&CK tactics."
   default     = ["PrivilegeEscalation", "DefenseEvasion", "Impact"]
+  description = "MITRE ATT&CK tactics."
 }
 
 variable "scheduled_techniques" {
   type        = list(string)
-  description = "MITRE ATT&CK techniques."
   default     = ["T1098", "T1562", "T1485"]
+  description = "MITRE ATT&CK techniques."
 }
 
 variable "scheduled_event_grouping" {
   type = object({
     aggregation_method = string
   })
-  description = "Event grouping configuration."
   default     = null
+  description = "Event grouping configuration."
 }
 
 variable "scheduled_alert_details_override" {
-  type        = any
-  description = "Alert details override configuration."
+  type = object({
+    description_format   = string
+    display_name_format  = string
+    severity_column_name = string
+    tactics_column_name  = string
+    dynamic_properties = list(object({
+      name  = string
+      value = string
+    }))
+  })
   default     = null
+  description = "Alert details override configuration."
 }
 
 variable "scheduled_entity_mappings" {
-  type        = list(any)
-  description = "Entity mappings configuration."
+  type = list(object({
+    entity_type = string
+    field_mappings = list(object({
+      identifier  = string
+      column_name = string
+    }))
+  }))
   default     = []
+  description = "Entity mappings configuration."
 }
 
 variable "scheduled_sentinel_entity_mappings" {
-  type        = list(any)
-  description = "Sentinel entity mappings."
+  type = list(object({
+    column_name = string
+  }))
   default     = []
+  description = "Sentinel entity mappings."
 }
 
 variable "scheduled_incident_configuration" {
   type        = any
-  description = "Incident configuration."
   default     = null
+  description = "Incident configuration."
 }
 
 ##-----------------------------------------------------------------------------
@@ -717,20 +734,20 @@ variable "scheduled_incident_configuration" {
 ##-----------------------------------------------------------------------------
 variable "enable_threat_intelligence_rule" {
   type        = bool
-  description = "Enable Threat Intelligence rule."
   default     = false
+  description = "Enable Threat Intelligence rule."
 }
 
 variable "threat_intelligence_template_guid" {
   type        = string
-  description = "Threat Intelligence template GUID."
   default     = "0dd422ee-e6af-4204-b219-f59ac172e4c6"
+  description = "Threat Intelligence template GUID."
 }
 
 variable "threat_intelligence_enabled" {
   type        = bool
-  description = "Enable Threat Intelligence execution."
   default     = false
+  description = "Enable Threat Intelligence execution."
 }
 
 ##-----------------------------------------------------------------------------
@@ -738,56 +755,56 @@ variable "threat_intelligence_enabled" {
 ##-----------------------------------------------------------------------------
 variable "enable_automation_rule" {
   type        = bool
-  description = "Enable Automation rule."
   default     = false
+  description = "Enable Automation rule."
 }
 
 variable "automation_rule_name" {
   type        = string
+  default     = null
   description = "Automation rule name (UUID format)."
-  default     = "00000000-0000-0000-0000-000000000001"
 }
 
 variable "automation_display_name" {
   type        = string
-  description = "Automation rule display name."
   default     = "Automation Rule"
+  description = "Automation rule display name."
 }
 
 variable "automation_order" {
   type        = number
-  description = "Automation rule order."
   default     = 1
+  description = "Automation rule order."
 }
 
 variable "automation_enabled" {
   type        = bool
-  description = "Enable automation rule."
   default     = false
+  description = "Enable automation rule."
 }
 
 variable "automation_expiration" {
   type        = string
-  description = "Automation rule expiration date."
   default     = null
+  description = "Automation rule expiration date."
 }
 
 variable "automation_triggers_on" {
   type        = string
-  description = "What triggers the automation."
   default     = "Incidents"
+  description = "What triggers the automation."
 }
 
 variable "automation_triggers_when" {
   type        = string
-  description = "When to trigger automation."
   default     = "Created"
+  description = "When to trigger automation."
 }
 
 variable "automation_condition_json" {
   type        = string
-  description = "Condition JSON for automation rule."
   default     = null
+  description = "Condition JSON for automation rule."
 }
 
 variable "automation_action_incidents" {
@@ -800,8 +817,8 @@ variable "automation_action_incidents" {
     classification         = string
     classification_comment = string
   }))
-  description = "Incident actions."
   default     = []
+  description = "Incident actions."
 }
 
 variable "automation_action_tasks" {
@@ -810,8 +827,8 @@ variable "automation_action_tasks" {
     title       = string
     description = string
   }))
-  description = "Task actions."
   default     = []
+  description = "Task actions."
 }
 
 variable "automation_action_playbooks" {
@@ -820,6 +837,6 @@ variable "automation_action_playbooks" {
     order        = number
     tenant_id    = string
   }))
-  description = "Playbook actions."
   default     = []
+  description = "Playbook actions."
 }

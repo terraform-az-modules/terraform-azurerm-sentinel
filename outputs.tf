@@ -117,6 +117,6 @@ output "sentinel_automation_rule_id" {
 }
 
 output "sentinel_workspace_id" {
-  value       = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  value       = try(azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id, null)
   description = "The ID of the Sentinel enabled Log Analytics Workspace"
 }

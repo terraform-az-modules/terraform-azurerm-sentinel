@@ -22,8 +22,15 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_sentinel_data_connector_azure_active_directory" "main" {
   count                      = var.enable && var.enable_aad_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("aad-%s", local.name) : format("%s-aad", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
+}
+
+##-----------------------------------------------------------------------------
+# Random UUID (Automation Rulegit status)
+##-----------------------------------------------------------------------------
+resource "random_uuid" "automation_rule" {
+  count = var.enable && var.enable_automation_rule ? 1 : 0
 }
 
 ##-----------------------------------------------------------------------------
@@ -32,7 +39,7 @@ resource "azurerm_sentinel_data_connector_azure_active_directory" "main" {
 resource "azurerm_sentinel_data_connector_azure_advanced_threat_protection" "main" {
   count                      = var.enable && var.enable_aatp_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("aatp-%s", local.name) : format("%s-aatp", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -42,7 +49,7 @@ resource "azurerm_sentinel_data_connector_azure_advanced_threat_protection" "mai
 resource "azurerm_sentinel_data_connector_azure_security_center" "main" {
   count                      = var.enable && var.enable_asc_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("asc-%s", local.name) : format("%s-asc", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   subscription_id            = var.subscription_id
 }
 
@@ -52,7 +59,7 @@ resource "azurerm_sentinel_data_connector_azure_security_center" "main" {
 resource "azurerm_sentinel_data_connector_dynamics_365" "main" {
   count                      = var.enable && var.enable_dynamics_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("dynamics365-%s", local.name) : format("%s-dynamics365", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -62,7 +69,7 @@ resource "azurerm_sentinel_data_connector_dynamics_365" "main" {
 resource "azurerm_sentinel_data_connector_iot" "main" {
   count                      = var.enable && var.enable_iot_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("iot-%s", local.name) : format("%s-iot", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   subscription_id            = var.subscription_id
 }
 
@@ -72,7 +79,7 @@ resource "azurerm_sentinel_data_connector_iot" "main" {
 resource "azurerm_sentinel_data_connector_microsoft_cloud_app_security" "main" {
   count                      = var.enable && var.enable_mcas_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("mcas-%s", local.name) : format("%s-mcas", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   alerts_enabled             = var.mcas_alerts_enabled
   discovery_logs_enabled     = var.mcas_discovery_logs_enabled
   tenant_id                  = var.tenant_id
@@ -84,14 +91,15 @@ resource "azurerm_sentinel_data_connector_microsoft_cloud_app_security" "main" {
 resource "azurerm_sentinel_data_connector_microsoft_defender_advanced_threat_protection" "main" {
   count                      = var.enable && var.enable_mdatp_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("mdatp-%s", local.name) : format("%s-mdatp", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
 ##-----------------------------------------------------------------------------
-# Sentinel Log Anaytics Workspace
+# Sentinel Log Analytics Workspace
 ##-----------------------------------------------------------------------------
 resource "azurerm_sentinel_log_analytics_workspace_onboarding" "main" {
+  count        = var.enable ? 1 : 0
   workspace_id = var.log_analytics_workspace_id
 }
 
@@ -101,7 +109,7 @@ resource "azurerm_sentinel_log_analytics_workspace_onboarding" "main" {
 resource "azurerm_sentinel_data_connector_microsoft_threat_intelligence" "main" {
   count                                        = var.enable && var.enable_mti_connector ? 1 : 0
   name                                         = var.resource_position_prefix ? format("mti-%s", local.name) : format("%s-mti", local.name)
-  log_analytics_workspace_id                   = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id                   = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   microsoft_emerging_threat_feed_lookback_date = var.mti_lookback_date
   tenant_id                                    = var.tenant_id
 }
@@ -112,7 +120,7 @@ resource "azurerm_sentinel_data_connector_microsoft_threat_intelligence" "main" 
 resource "azurerm_sentinel_data_connector_microsoft_threat_protection" "main" {
   count                      = var.enable && var.enable_mtp_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("mtp-%s", local.name) : format("%s-mtp", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -122,7 +130,7 @@ resource "azurerm_sentinel_data_connector_microsoft_threat_protection" "main" {
 resource "azurerm_sentinel_data_connector_office_365" "main" {
   count                      = var.enable && var.enable_office365_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("o365-%s", local.name) : format("%s-o365", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   exchange_enabled           = var.office365_exchange_enabled
   teams_enabled              = var.office365_teams_enabled
   sharepoint_enabled         = var.office365_sharepoint_enabled
@@ -135,7 +143,7 @@ resource "azurerm_sentinel_data_connector_office_365" "main" {
 resource "azurerm_sentinel_data_connector_office_365_project" "main" {
   count                      = var.enable && var.enable_office365_project_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("o365-project-%s", local.name) : format("%s-o365-project", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -145,7 +153,7 @@ resource "azurerm_sentinel_data_connector_office_365_project" "main" {
 resource "azurerm_sentinel_data_connector_office_atp" "main" {
   count                      = var.enable && var.enable_office_atp_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("office-atp-%s", local.name) : format("%s-office-atp", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -155,7 +163,7 @@ resource "azurerm_sentinel_data_connector_office_atp" "main" {
 resource "azurerm_sentinel_data_connector_office_irm" "main" {
   count                      = var.enable && var.enable_office_irm_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("office-irm-%s", local.name) : format("%s-office-irm", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -165,7 +173,7 @@ resource "azurerm_sentinel_data_connector_office_irm" "main" {
 resource "azurerm_sentinel_data_connector_office_power_bi" "main" {
   count                      = var.enable && var.enable_office_powerbi_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("office-powerbi-%s", local.name) : format("%s-office-powerbi", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
 }
 
@@ -175,7 +183,7 @@ resource "azurerm_sentinel_data_connector_office_power_bi" "main" {
 resource "azurerm_sentinel_data_connector_threat_intelligence" "main" {
   count                      = var.enable && var.enable_ti_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("ti-%s", local.name) : format("%s-ti", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   tenant_id                  = var.tenant_id
   lookback_date              = var.ti_lookback_date
 }
@@ -186,7 +194,7 @@ resource "azurerm_sentinel_data_connector_threat_intelligence" "main" {
 resource "azurerm_sentinel_data_connector_threat_intelligence_taxii" "main" {
   count                      = var.enable && var.enable_ti_taxii_connector ? 1 : 0
   name                       = var.resource_position_prefix ? format("ti-taxii-%s", local.name) : format("%s-ti-taxii", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   display_name               = var.ti_taxii_display_name
   api_root_url               = var.ti_taxii_api_root_url
   collection_id              = var.ti_taxii_collection_id
@@ -203,7 +211,7 @@ resource "azurerm_sentinel_data_connector_threat_intelligence_taxii" "main" {
 resource "azurerm_sentinel_alert_rule_fusion" "main" {
   count                      = var.enable && var.enable_fusion_rule ? 1 : 0
   name                       = var.resource_position_prefix ? format("fusion-%s", local.name) : format("%s-fusion", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   alert_rule_template_guid   = var.fusion_alert_rule_template_guid
   enabled                    = var.fusion_enabled
   dynamic "source" {
@@ -229,7 +237,7 @@ resource "azurerm_sentinel_alert_rule_fusion" "main" {
 resource "azurerm_sentinel_alert_rule_machine_learning_behavior_analytics" "main" {
   count                      = var.enable && var.enable_ml_behavior_analytics_rule ? 1 : 0
   name                       = var.resource_position_prefix ? format("ml-behavior-%s", local.name) : format("%s-ml-behavior", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   alert_rule_template_guid   = var.ml_behavior_analytics_template_guid
   enabled                    = var.ml_behavior_analytics_enabled
 }
@@ -240,7 +248,7 @@ resource "azurerm_sentinel_alert_rule_machine_learning_behavior_analytics" "main
 resource "azurerm_sentinel_alert_rule_ms_security_incident" "main" {
   count                       = var.enable && var.enable_ms_security_incident_rule ? 1 : 0
   name                        = var.resource_position_prefix ? format("ms-security-%s", local.name) : format("%s-ms-security", local.name)
-  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   display_name                = var.ms_security_display_name
   product_filter              = var.ms_security_product_filter
   severity_filter             = var.ms_security_severity_filter
@@ -257,7 +265,7 @@ resource "azurerm_sentinel_alert_rule_ms_security_incident" "main" {
 resource "azurerm_sentinel_alert_rule_nrt" "main" {
   count                       = var.enable && var.enable_nrt_rule ? 1 : 0
   name                        = var.resource_position_prefix ? format("nrt-%s", local.name) : format("%s-nrt", local.name)
-  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   display_name                = var.nrt_display_name
   severity                    = var.nrt_severity
   query                       = var.nrt_query
@@ -342,7 +350,7 @@ resource "azurerm_sentinel_alert_rule_nrt" "main" {
 resource "azurerm_sentinel_alert_rule_scheduled" "main" {
   count                       = var.enable && var.enable_scheduled_rule ? 1 : 0
   name                        = var.resource_position_prefix ? format("scheduled-%s", local.name) : format("%s-scheduled", local.name)
-  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id  = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   display_name                = var.scheduled_display_name
   severity                    = var.scheduled_severity
   query                       = var.scheduled_query
@@ -429,7 +437,7 @@ resource "azurerm_sentinel_alert_rule_scheduled" "main" {
 resource "azurerm_sentinel_alert_rule_threat_intelligence" "main" {
   count                      = var.enable && var.enable_threat_intelligence_rule ? 1 : 0
   name                       = var.resource_position_prefix ? format("threat-intel-%s", local.name) : format("%s-threat-intel", local.name)
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   alert_rule_template_guid   = var.threat_intelligence_template_guid
   enabled                    = var.threat_intelligence_enabled
 }
@@ -439,8 +447,8 @@ resource "azurerm_sentinel_alert_rule_threat_intelligence" "main" {
 ##-----------------------------------------------------------------------------
 resource "azurerm_sentinel_automation_rule" "main" {
   count                      = var.enable && var.enable_automation_rule ? 1 : 0
-  name                       = var.automation_rule_name
-  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  name                       = var.automation_rule_name != null ? var.automation_rule_name : random_uuid.automation_rule[0].result
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   display_name               = var.automation_display_name
   order                      = var.automation_order
   enabled                    = var.automation_enabled
