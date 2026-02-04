@@ -5,13 +5,13 @@
 #
 
 # Name of this project
-name : Terraform Azure Module Template
+name : Terraform Azure Sentinel Module
 
 # License of this project
 license: "APACHE"
 
 # Canonical GitHub repo
-github_repo: terraform-az-modules/terraform-module-template
+github_repo: terraform-az-modules/terraform-azurerm-sentinel
 
 # Badges to display
 badges:
@@ -38,12 +38,19 @@ providers:
 
 #  description of this project
 description: |-
-  Terraform Azure Module Template to create new modules using this as baseline
+  Terraform Azure Sentinel Module is a Terraform module that allows you to create and manage Microsoft Sentinel (Azure Sentinel) resources in Azure.
 
-# How to use this project
 # How to use this project
 usage: |-
   Here are some examples of how you can use this module in your inventory structure:
   ```hcl
-    locals {}
+  module "sentinel" {
+  source                     = "../../"
+  name                       = "core"
+  environment                = "dev"
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  resource_group_name        = module.resource_group.resource_group_name
+  subscription_id            = data.azurerm_client_config.current.subscription_id
+  log_analytics_workspace_id = module.log-analytics.workspace_id
+}
     ```
