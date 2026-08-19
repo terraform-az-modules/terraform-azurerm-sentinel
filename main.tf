@@ -14,8 +14,6 @@ module "labels" {
   extra_tags      = var.extra_tags
 }
 
-data "azurerm_client_config" "current" {}
-
 ##-----------------------------------------------------------------------------
 # Azure Active Directory Data Connector
 ##-----------------------------------------------------------------------------
