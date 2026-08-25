@@ -14,8 +14,6 @@ module "labels" {
   extra_tags      = var.extra_tags
 }
 
-data "azurerm_client_config" "current" {}
-
 ##-----------------------------------------------------------------------------
 # Azure Active Directory Data Connector
 ##-----------------------------------------------------------------------------
@@ -210,7 +208,6 @@ resource "azurerm_sentinel_data_connector_threat_intelligence_taxii" "main" {
 ##-----------------------------------------------------------------------------
 resource "azurerm_sentinel_alert_rule_fusion" "main" {
   count                      = var.enable && var.enable_fusion_rule ? 1 : 0
-  name                       = var.resource_position_prefix ? format("fusion-%s", local.name) : format("%s-fusion", local.name)
   log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.main[0].workspace_id
   alert_rule_template_guid   = var.fusion_alert_rule_template_guid
   enabled                    = var.fusion_enabled

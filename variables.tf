@@ -85,11 +85,6 @@ variable "enable" {
   description = "Set to false to prevent the module from creating any resources."
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "The name of the resource group in which to deploy Sentinel resources."
-}
-
 variable "log_analytics_workspace_id" {
   type        = string
   description = "The resource ID of the Log Analytics Workspace where Sentinel is deployed."
