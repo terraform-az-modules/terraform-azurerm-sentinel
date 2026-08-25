@@ -83,7 +83,6 @@
 | office365\_sharepoint\_enabled | Enable SharePoint logs for Office 365 connector. | `bool` | `false` | no |
 | office365\_teams\_enabled | Enable Teams logs for Office 365 connector. | `bool` | `false` | no |
 | repository | Terraform current module repo | `string` | `"https://github.com/terraform-az-modules/terraform-azurerm-sentinel"` | no |
-| resource\_group\_name | The name of the resource group in which to deploy Sentinel resources. | `string` | n/a | yes |
 | resource\_position\_prefix | Controls the placement of the resource type keyword (e.g., "vnet", "ddospp") in the resource name.<br><br>- If true, the keyword is prepended: "vnet-core-dev".<br>- If false, the keyword is appended: "core-dev-vnet".<br><br>This helps maintain naming consistency based on organizational preferences. | `bool` | `true` | no |
 | scheduled\_alert\_details\_override | Alert details override configuration. | <pre>object({<br>    description_format   = string<br>    display_name_format  = string<br>    severity_column_name = string<br>    tactics_column_name  = string<br>    dynamic_properties = list(object({<br>      name  = string<br>      value = string<br>    }))<br>  })</pre> | `null` | no |
 | scheduled\_custom\_details | Custom details. | `map(string)` | <pre>{<br>  "caller": "Caller",<br>  "operation": "OperationNameValue",<br>  "rg": "ResourceGroup"<br>}</pre> | no |
